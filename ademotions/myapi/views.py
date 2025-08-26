@@ -27,7 +27,7 @@ class AdvertisementViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         queryset = self.queryset
-        query_set = queryset.filter(user=self.request.user)
+        query_set = queryset.filter(user=self.request.user).order_by('upload_date')
         query_set = query_set.annotate(total_respondents=Count('respondent'))
         return query_set
 
